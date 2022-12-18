@@ -1,13 +1,12 @@
 # author: Xnork
 # data: 18/11/2022
 
-import random
+import random, sys
 from Socket import Socket
 
 def main():
     IP_TARGET, port \
-        = input('IP Target: '), \
-        int(input('Initial port: ')) or 90
+        = sys.argv[1] if len(sys.argv) > 2 else input('IP Target: '), 1
 
     assert len(IP_TARGET) > 0
 
